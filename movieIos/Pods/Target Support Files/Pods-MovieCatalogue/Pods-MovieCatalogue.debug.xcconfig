@@ -1,0 +1,14 @@
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/KMPNativeCoroutinesCore" "${PODS_CONFIGURATION_BUILD_DIR}/KMPNativeCoroutinesRxSwift" "${PODS_CONFIGURATION_BUILD_DIR}/PinLayout" "${PODS_CONFIGURATION_BUILD_DIR}/Reusable" "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa" "${PODS_CONFIGURATION_BUILD_DIR}/RxRelay" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD" "${PODS_ROOT}/../../core/build/cocoapods/framework"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/KMPNativeCoroutinesCore/KMPNativeCoroutinesCore.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/KMPNativeCoroutinesRxSwift/KMPNativeCoroutinesRxSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PinLayout/PinLayout.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Reusable/Reusable.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa/RxCocoa.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxRelay/RxRelay.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift/RxSwift.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SDWebImage/SDWebImage.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SVProgressHUD/SVProgressHUD.framework/Headers"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -framework "CoreGraphics" -framework "Foundation" -framework "ImageIO" -framework "KMPNativeCoroutinesCore" -framework "KMPNativeCoroutinesRxSwift" -framework "KotlinCore" -framework "PinLayout" -framework "QuartzCore" -framework "Reusable" -framework "RxCocoa" -framework "RxRelay" -framework "RxSwift" -framework "SDWebImage" -framework "SVProgressHUD" -framework "UIKit"
+OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
+PODS_BUILD_DIR = ${BUILD_DIR}
+PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
+PODS_PODFILE_DIR_PATH = ${SRCROOT}/.
+PODS_ROOT = ${SRCROOT}/Pods
+PODS_XCFRAMEWORKS_BUILD_DIR = $(PODS_CONFIGURATION_BUILD_DIR)/XCFrameworkIntermediates
+USE_RECURSIVE_SCRIPT_INPUTS_IN_SCRIPT_PHASES = YES

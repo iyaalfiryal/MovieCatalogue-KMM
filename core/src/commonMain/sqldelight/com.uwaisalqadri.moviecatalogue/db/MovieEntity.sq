@@ -1,0 +1,60 @@
+import java.lang.Boolean;
+
+CREATE TABLE MovieEntity (
+  adult INTEGER AS Boolean,
+  backdropPath TEXT,
+  genres TEXT,
+  id INTEGER NOT NULL PRIMARY KEY,
+  originalLanguage TEXT,
+  originalTitle TEXT NOT NULL,
+  overview TEXT,
+  popularity REAL,
+  posterPath TEXT ,
+  releaseDate TEXT NOT NULL,
+  title TEXT,
+  video INTEGER AS Boolean,
+  voteAverage REAL,
+  voteCount INTEGER
+);
+--
+insertItem:
+INSERT OR REPLACE INTO
+    MovieEntity (
+        adult,
+        backdropPath,
+        genres,
+        id,
+        originalLanguage,
+        originalTitle,
+        overview,
+        popularity,
+        posterPath,
+        releaseDate,
+        title,
+        video,
+        voteAverage,
+        voteCount
+    )
+VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
+--
+selectByQuery:
+SELECT *
+FROM MovieEntity
+WHERE title LIKE ('% ' || :query)
+OR title LIKE (:query || ' %')
+ORDER BY id;
+
+selectById:
+SELECT *
+FROM MovieEntity
+ORDER BY id=:idMovie;
+
+selectAll:
+SELECT *
+FROM MovieEntity
+ORDER BY id;
+
+--
+deleteItem:
+DELETE FROM MovieEntity
+WHERE id=:id;
