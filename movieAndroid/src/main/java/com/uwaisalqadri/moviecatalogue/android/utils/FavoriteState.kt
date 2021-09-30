@@ -1,11 +1,10 @@
 package com.uwaisalqadri.moviecatalogue.android.utils
 
-import com.uwaisalqadri.moviecatalogue.domain.model.Movie
-
 /**
  * Created by Uwais Alqadri on September 29, 2021
  */
-sealed class FavoriteState
-data class FavMovieDataFound(val state: Boolean) : FavoriteState()
-object AddFavorite : FavoriteState()
-object RemoveFavorite : FavoriteState()
+sealed class FavoriteState {
+	data class FavMovieDataFound(val state: Boolean) : FavoriteState()
+	object AddFavorite : FavoriteState()
+	object RemoveFavorite : FavoriteState()
+}

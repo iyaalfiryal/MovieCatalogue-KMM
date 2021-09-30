@@ -83,13 +83,13 @@ class DetailActivity : AppCompatActivity() {
 
 			favoriteViewModel.favoriteState.observe(this@DetailActivity) { favoriteState ->
 				when(favoriteState) {
-					is AddFavorite -> {
+					is FavoriteState.AddFavorite -> {
 						changeFavorite(true)
 					}
-					is RemoveFavorite -> {
+					is FavoriteState.RemoveFavorite -> {
 						changeFavorite(false)
 					}
-					is FavMovieDataFound -> {
+					is FavoriteState.FavMovieDataFound -> {
 						changeFavorite(favoriteState.state)
 					}
 				}
