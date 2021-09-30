@@ -108,7 +108,7 @@ kotlin {
 }
 
 sqldelight {
-    database("MovieDB") {
+    database("MovieDatabase") {
         packageName = "com.uwaisalqadri.moviecatalogue.db"
         sourceFolders = listOf("sqldelight")
     }

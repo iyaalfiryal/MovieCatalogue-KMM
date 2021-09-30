@@ -16,9 +16,4 @@
         android:icon="@drawable/item_favorite"
         android:title="@string/favorite" />
 
-    <item
-        android:id="@+id/nothing"
-        android:icon="@drawable/ic_unknown"
-        android:title="@string/popular" />
-
 </menu>

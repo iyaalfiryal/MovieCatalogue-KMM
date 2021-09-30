@@ -7,7 +7,6 @@ import kotlinx.coroutines.flow.Flow
 /**
  * Created by Uwais Alqadri on September 25, 2021
  */
-
 interface GetDetailMovieUseCase {
 	suspend fun execute(idMovie: Int): Flow<Movie>
 }

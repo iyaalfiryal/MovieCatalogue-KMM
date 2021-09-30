@@ -22,7 +22,7 @@ import org.koin.core.component.inject
 /**
  * Created by Uwais Alqadri on September 24, 2021
  */
-class MovieRepositoryImpl(
+class DefaultMovieRepository(
 	private val remoteDataSource: RemoteDataSource,
 	private val mapper: MovieResponseMapper,
 	private val entityMapper: MovieEntityMapper,

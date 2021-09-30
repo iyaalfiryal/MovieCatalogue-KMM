@@ -6,7 +6,7 @@ import com.uwaisalqadri.moviecatalogue.data.mapper.response.CastResponseMapper
 import com.uwaisalqadri.moviecatalogue.data.mapper.response.GenreResponseMapper
 import com.uwaisalqadri.moviecatalogue.data.mapper.response.MovieResponseMapper
 import com.uwaisalqadri.moviecatalogue.data.mapper.response.VideoResponseMapper
-import com.uwaisalqadri.moviecatalogue.data.repository.MovieRepositoryImpl
+import com.uwaisalqadri.moviecatalogue.data.repository.DefaultMovieRepository
 import com.uwaisalqadri.moviecatalogue.data.source.local.databaseModule
 import com.uwaisalqadri.moviecatalogue.data.source.remote.RemoteDataSource
 import com.uwaisalqadri.moviecatalogue.domain.repository.MovieRepository
@@ -86,7 +86,7 @@ val useCaseModule = module {
 
 val repositoryModule = module {
 	single<MovieRepository> {
-		MovieRepositoryImpl(get(), get(), get(), get(), get(), get())
+		DefaultMovieRepository(get(), get(), get(), get(), get(), get())
 	}
 }
 
