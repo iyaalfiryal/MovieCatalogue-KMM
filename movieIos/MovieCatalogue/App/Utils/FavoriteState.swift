@@ -7,10 +7,9 @@
 //
 
 import Foundation
-import KotlinCore
 
 enum FavoriteState {
-  case favMovieFound(movies: [Movie])
+  case favMovieFound(state: Bool)
   case addFavorite
   case removeFavorite
 }

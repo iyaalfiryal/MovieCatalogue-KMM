@@ -34,7 +34,7 @@ extension DetailAssembler where Self: Assembler {
   }
 
   func resolve(with id: Int) -> DetailViewModel {
-    return DetailViewModel(detailUseCase: resolve(), castUseCase: resolve(), videoUseCase: resolve(), favoriteUseCase: resolve(), idMovie: id)
+    return DetailViewModel(detailUseCase: resolve(), castUseCase: resolve(), videoUseCase: resolve(), idMovie: id)
   }
 
   func resolve(with id: Int) -> DetailViewController {

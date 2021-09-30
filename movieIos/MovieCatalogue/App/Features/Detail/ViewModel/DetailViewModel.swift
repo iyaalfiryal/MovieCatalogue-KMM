@@ -22,14 +22,12 @@ class DetailViewModel {
   private let detailUseCase: GetDetailMovieUseCase
   private let castUseCase: GetCastMovieUseCase
   private let videoUseCase: GetVideoMovieUseCase
-  private let favoriteUseCase: GetFavoriteMovieUseCase
   private let idMovie: Int
 
-  init(detailUseCase: GetDetailMovieUseCase, castUseCase: GetCastMovieUseCase, videoUseCase: GetVideoMovieUseCase, favoriteUseCase: GetFavoriteMovieUseCase, idMovie: Int) {
+  init(detailUseCase: GetDetailMovieUseCase, castUseCase: GetCastMovieUseCase, videoUseCase: GetVideoMovieUseCase, idMovie: Int) {
     self.detailUseCase = detailUseCase
     self.castUseCase = castUseCase
     self.videoUseCase = videoUseCase
-    self.favoriteUseCase = favoriteUseCase
     self.idMovie = idMovie
   }
 

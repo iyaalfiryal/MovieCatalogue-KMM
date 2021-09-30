@@ -73,6 +73,7 @@ class DetailViewController: UIViewController {
     viewModel.detailMovie.subscribe(onNext: { [weak self] result in
       self?.movie = result
       self?.didFinish()
+      self?.favoriteViewModel.checkFavoriteMovie(idMovie: Int(truncating: result.id ?? 0))
     }).disposed(by: disposeBag)
 
     viewModel.castMovie.subscribe(onNext: { [weak self] result in
@@ -87,20 +88,12 @@ class DetailViewController: UIViewController {
 
     favoriteViewModel.favoriteState.subscribe(onNext: { [weak self] state in
       switch state {
-      case .favMovieFound(let movies):
-        print("favoritestate", movies)
-        movies.forEach { item in
-          if item.id == self?.movie?.id {
-            self?.toggleButton(state: true)
-//            self?.isFavorite = true
-          }
-        }
+      case .favMovieFound(let state):
+        self?.toggleButton(state: state)
       case .addFavorite:
         self?.toggleButton(state: true)
-//        self?.isFavorite = true
       case .removeFavorite:
         self?.toggleButton(state: false)
-//        self?.isFavorite = false
       }
     }).disposed(by: disposeBag)
 
@@ -128,7 +121,6 @@ class DetailViewController: UIViewController {
     viewModel.requestDetailMovie()
     viewModel.requestCastMovie()
     viewModel.requestVideoMovie()
-    favoriteViewModel.checkFavoriteMovie(idMovie: Int(truncating: movie?.id ?? 0))
   }
 
   private func didFinish() {
@@ -149,13 +141,13 @@ class DetailViewController: UIViewController {
 
   @IBAction func didTapFavorite(_ sender: Any) {
     guard let favoriteMovie = movie else { return }
-//    isFavorite
-//      ? favoriteViewModel.addFavoriteMovie(movie: favoriteMovie)
-//      : favoriteViewModel.removeFavoriteMovie(idMovie: Int(truncating: (movie?.id ?? 0)))
-    favoriteViewModel.addFavoriteMovie(movie: favoriteMovie)
+    isFavorite
+      ? favoriteViewModel.removeFavoriteMovie(idMovie: Int(truncating: (favoriteMovie.id ?? 0)))
+      : favoriteViewModel.addFavoriteMovie(movie: favoriteMovie)
   }
 
   private func toggleButton(state: Bool) {
+    isFavorite = state
     btnFavorite.setTitle(state ? "Remove from Favorite" : "Add to Favorite", for: .normal)
     if #available(iOS 13.0, *) {
       btnFavorite.setImage(state ? UIImage(systemName: "checkmark") : .iconAdd, for: .normal)
