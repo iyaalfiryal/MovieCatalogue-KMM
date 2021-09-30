@@ -130,6 +130,6 @@ extension SearchViewController: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    navigator.navigateToDetail(from: self, with: Int(truncating: searchedMovies[indexPath.row].id ?? 0))
+    navigator.navigateToDetail(from: self, with: searchedMovies[indexPath.row].id as? Int ?? 0)
   }
 }

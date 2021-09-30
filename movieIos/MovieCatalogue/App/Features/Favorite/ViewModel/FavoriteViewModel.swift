@@ -46,7 +46,7 @@ class FavoriteViewModel {
       .observe(on: MainScheduler.instance)
       .subscribe(onNext: { [weak self] result in
         result?.forEach { movie in
-          self?.favoriteState.accept(.favMovieFound(state: Int(truncating: movie.id ?? 0) == idMovie))
+          self?.favoriteState.accept(.favMovieFound(state: movie.id as? Int ?? 0 == idMovie))
         }
       }).disposed(by: disposeBag)
   }

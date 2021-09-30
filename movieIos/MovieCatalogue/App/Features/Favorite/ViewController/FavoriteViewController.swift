@@ -122,7 +122,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
 
     cell.removeHandler = { [weak self] movie in
       guard let self = self else { return }
-      self.viewModel.removeFavoriteMovie(idMovie: Int(truncating: movie.id ?? 0))
+      self.viewModel.removeFavoriteMovie(idMovie: movie.id as? Int ?? 0)
       self.viewModel.requestFavoriteMovie()
       self.tblFavorite.reloadData()
     }
@@ -131,7 +131,7 @@ extension FavoriteViewController: UITableViewDelegate, UITableViewDataSource {
   }
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    navigator.navigateToDetail(from: self, with: Int(truncating: favoriteMovies[indexPath.row].id ?? 0))
+    navigator.navigateToDetail(from: self, with: favoriteMovies[indexPath.row].id as? Int ?? 0)
   }
 
 }

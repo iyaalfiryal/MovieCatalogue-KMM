@@ -133,7 +133,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.selectionStyle = .none
       cell.movieClickHandler = { [weak self] movie in
         guard let self = self else { return }
-        self.navigator.navigateToDetail(from: self, with: Int(truncating: movie.id ?? 0))
+        self.navigator.navigateToDetail(from: self, with: movie.id as? Int ?? 0)
       }
       return cell
     case .upcoming:
@@ -143,7 +143,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.selectionStyle = .none
       cell.movieClickHandler = { [weak self] movie in
         guard let self = self else { return }
-        self.navigator.navigateToDetail(from: self, with: Int(truncating: movie.id ?? 0))
+        self.navigator.navigateToDetail(from: self, with: movie.id as? Int ?? 0)
       }
       return cell
     case .banner:
@@ -152,7 +152,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
       cell.bannerMovies = bannerMovies
       cell.bannerClickHandler = { [weak self] movie in
         guard let self = self else { return }
-        self.navigator.navigateToDetail(from: self, with: Int(truncating: movie.id ?? 0))
+        self.navigator.navigateToDetail(from: self, with: movie.id as? Int ?? 0)
       }
       return cell
     }

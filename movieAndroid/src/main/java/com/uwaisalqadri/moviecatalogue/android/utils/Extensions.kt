@@ -57,5 +57,5 @@ fun ImageView.loadImage(url: String) {
 fun Context.openLink(url: String) {
 	val openLink = Intent(Intent.ACTION_VIEW)
 	openLink.data = Uri.parse(url)
-	this.startActivity(openLink)
+	startActivity(openLink)
 }

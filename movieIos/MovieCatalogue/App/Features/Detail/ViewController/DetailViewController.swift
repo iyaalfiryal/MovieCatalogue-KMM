@@ -73,7 +73,7 @@ class DetailViewController: UIViewController {
     viewModel.detailMovie.subscribe(onNext: { [weak self] result in
       self?.movie = result
       self?.didFinish()
-      self?.favoriteViewModel.checkFavoriteMovie(idMovie: Int(truncating: result.id ?? 0))
+      self?.favoriteViewModel.checkFavoriteMovie(idMovie: result.id as? Int ?? 0)
     }).disposed(by: disposeBag)
 
     viewModel.castMovie.subscribe(onNext: { [weak self] result in
@@ -148,7 +148,7 @@ class DetailViewController: UIViewController {
 
   private func toggleButton(state: Bool) {
     isFavorite = state
-    btnFavorite.setTitle(state ? "Remove from Favorite" : "Add to Favorite", for: .normal)
+    btnFavorite.setTitle(state ? "Remove Favorite" : "Add to Favorite", for: .normal)
     if #available(iOS 13.0, *) {
       btnFavorite.setImage(state ? UIImage(systemName: "checkmark") : .iconAdd, for: .normal)
       btnFavorite.tintColor = .accentColor
