@@ -119,7 +119,7 @@ class MovieRepositoryImpl(
 	override suspend fun getFavoriteMovieById(idMovie: Int): Flow<List<Movie>?> {
 		return flow {
 			try {
-				val result = localDataSource?.selectById(idMovie.toLong())?.executeAsList()?.map { entityMapper.mapToDomain(it) }
+				val result = localDataSource?.selectById(idMovie)?.executeAsList()?.map { entityMapper.mapToDomain(it) }
 				emit(result)
 			} catch (e: Throwable) {
 				logger.d { e.toString() }
@@ -148,7 +148,7 @@ class MovieRepositoryImpl(
 	}
 
 	override suspend fun deleteFavoriteMovie(idMovie: Int) {
-		localDataSource?.deleteItem(idMovie.toLong())
+		localDataSource?.deleteItem(idMovie)
 	}
 
 }

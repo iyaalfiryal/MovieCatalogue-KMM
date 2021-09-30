@@ -1,10 +1,11 @@
 import java.lang.Boolean;
+import java.lang.Integer;
 
 CREATE TABLE MovieEntity (
   adult INTEGER AS Boolean,
   backdropPath TEXT,
   genres TEXT,
-  id INTEGER NOT NULL PRIMARY KEY,
+  id INTEGER AS Integer NOT NULL PRIMARY KEY,
   originalLanguage TEXT,
   originalTitle TEXT NOT NULL,
   overview TEXT,
