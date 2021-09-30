@@ -44,6 +44,8 @@ class FavoriteViewController: UIViewController {
 
   override func viewWillAppear(_ animated: Bool) {
     setNavigationBar(type: .searchBar)
+    viewModel.requestFavoriteMovie()
+    tblFavorite.reloadData()
   }
 
   override func rightNavigationBarButtonTapped(sender: UIBarButtonItem?) {
@@ -58,8 +60,6 @@ class FavoriteViewController: UIViewController {
     configureViews()
     observeValues()
   }
-
-
 
   private func observeValues() {
     refreshControl.beginRefreshing()

@@ -22,6 +22,12 @@ class FavoriteViewModel {
 
   var query: String = ""
 
+  enum FavoriteState {
+    case favMovieFound(state: Bool)
+    case addFavorite
+    case removeFavorite
+  }
+
   init(favoriteUseCase: GetFavoriteMovieUseCase) {
     self.favoriteUseCase = favoriteUseCase
     requestFavoriteMovie()

@@ -8,24 +8,15 @@
 
 import Foundation
 
-protocol Utils: class {}
+protocol HasApply: class {}
 
-extension NSObject: Utils {}
+extension NSObject: HasApply {}
 
-extension Utils {
+extension HasApply {
 
   // kotlin-like scope operator
   func apply(closure:(Self) -> ()) -> Self {
     closure(self)
     return self
   }
-
-  // guard let self = self else { return } in fancy way
-  func weakify<T>(_ code: @escaping (Self, T) -> Void) -> (T) -> Void {
-    return { [weak self] (data) in
-      guard let self = self else { return }
-      code(self, data)
-    }
-  }
-
 }
