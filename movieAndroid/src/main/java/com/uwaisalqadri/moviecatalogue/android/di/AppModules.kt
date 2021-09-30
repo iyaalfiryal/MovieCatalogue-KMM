@@ -14,6 +14,6 @@ import org.koin.dsl.module
 val viewModelModule = module {
 	viewModel { HomeViewModel(get(), get(), get()) }
 	viewModel { SearchViewModel(get()) }
-	viewModel { DetailViewModel(get(), get(), get(), get()) }
+	viewModel { DetailViewModel(get(), get(), get()) }
 	viewModel { FavoriteViewModel(get()) }
 }

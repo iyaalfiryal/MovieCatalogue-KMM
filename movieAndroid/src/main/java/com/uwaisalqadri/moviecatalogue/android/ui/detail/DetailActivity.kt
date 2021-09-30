@@ -20,6 +20,7 @@ class DetailActivity : AppCompatActivity() {
 
 	private val binding: ActivityDetailBinding by viewBinding()
 	private val viewModel: DetailViewModel by viewModel()
+	private val favoriteViewModel: FavoriteViewModel by viewModel()
 
 	private val castAdapter = GroupAdapter<GroupieViewHolder>()
 
@@ -42,7 +43,7 @@ class DetailActivity : AppCompatActivity() {
 			requestDetailMovie(movieId)
 			requestCastMovie(movieId)
 			requestVideoMovie(movieId)
-			checkFavoriteMovie(movieId)
+			favoriteViewModel.checkFavoriteMovie(movieId)
 
 			detailMovie.observe(this@DetailActivity) { movie ->
 				binding.apply {
@@ -56,10 +57,8 @@ class DetailActivity : AppCompatActivity() {
 					genresDetailMovie.text = genreNames.joinToString(", ")
 
 					binding.btnAddFavorite.setOnClickListener {
-						when(isFavorite) {
-							true -> viewModel.deleteFavoriteMovie(movieData.id ?: 0)
-							false -> viewModel.addFavoriteMovie(movieData)
-						}
+						if (isFavorite == true) favoriteViewModel.deleteFavoriteMovie(movieData.id ?: 0)
+						else favoriteViewModel.addFavoriteMovie(movieData)
 					}
 				}
 			}
@@ -82,23 +81,16 @@ class DetailActivity : AppCompatActivity() {
 				binding.progressCircular.isVisible = it
 			}
 
-			favoriteState.observe(this@DetailActivity) { favoriteState ->
+			favoriteViewModel.favoriteState.observe(this@DetailActivity) { favoriteState ->
 				when(favoriteState) {
 					is AddFavorite -> {
-						removeFavoriteView()
-						isFavorite = true
+						changeFavorite(true)
 					}
 					is RemoveFavorite -> {
-						addFavoriteView()
-						isFavorite = false
+						changeFavorite(false)
 					}
 					is FavMovieDataFound -> {
-						favoriteState.movie.map {
-							if (it.id == movieId) {
-								removeFavoriteView()
-								isFavorite = true
-							}
-						}
+						changeFavorite(favoriteState.state)
 					}
 				}
 			}
@@ -115,18 +107,16 @@ class DetailActivity : AppCompatActivity() {
 		}
 	}
 
-	pri
-	private fun addFavoriteView() {
+	private fun changeFavorite(state: Boolean) {
+		isFavorite = state
 		binding.btnAddFavorite.apply {
-			text = getString(R.string.add_favorite)
-			setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add, 0, 0, 0)
-		}
-	}
-
-	private fun removeFavoriteView() {
-		binding.btnAddFavorite.apply {
-			text = getString(R.string.remove_favorite)
-			setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check, 0, 0, 0)
+			if (state) {
+				text = getString(R.string.remove_favorite)
+				setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_check, 0, 0, 0)
+			} else {
+				text = getString(R.string.add_favorite)
+				setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_add, 0, 0, 0)
+			}
 		}
 	}
 }
