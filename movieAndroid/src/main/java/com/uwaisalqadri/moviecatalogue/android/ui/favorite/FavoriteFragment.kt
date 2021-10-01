@@ -41,6 +41,8 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 						favoriteAdapter.clear()
 						if (it.isNotEmpty()) {
 							viewModel.requestFavoriteMovie(it.toString())
+						} else {
+							viewModel.requestFavoriteMovie("")
 						}
 					}
 				}
