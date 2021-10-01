@@ -3,8 +3,7 @@ package com.uwaisalqadri.moviecatalogue.data.source.local
 import co.touchlab.kermit.Logger
 import co.touchlab.kermit.NSLogLogger
 import com.squareup.sqldelight.drivers.native.NativeSqliteDriver
-import com.uwaisalqadri.moviecatalogue.data.source.local.MovieDatabaseWrapper
-import com.uwaisalqadri.moviecatalogue.db.MovieDB
+import com.uwaisalqadri.moviecatalogue.db.MovieDatabase
 import org.koin.dsl.module
 
 /**
@@ -12,8 +11,8 @@ import org.koin.dsl.module
  */
 actual fun databaseModule() = module {
 	single {
-		val driver = NativeSqliteDriver(MovieDB.Schema, "moviecatalogue.db")
-		MovieDatabaseWrapper(MovieDB(driver))
+		val driver = NativeSqliteDriver(MovieDatabase.Schema, "moviecatalogue.db")
+		MovieDatabaseWrapper(MovieDatabase(driver))
 	}
 
 	single<Logger> { NSLogLogger() }

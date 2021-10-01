@@ -75,7 +75,6 @@ class FavoriteViewController: UIViewController {
     tblFavorite.delegate = self
     tblFavorite.dataSource = self
     tblFavorite.register(cellType: FavoriteCell.self)
-    txtSearch.delegate = self
 
     if #available(iOS 10.0, *) {
       tblFavorite.refreshControl = refreshControl
@@ -93,20 +92,13 @@ class FavoriteViewController: UIViewController {
 
   @objc func textFieldDidChange(_ sender: UITextField) {
     refreshControl.beginRefreshing()
-    guard let text = sender.text, text != "" else { return }
+    guard let text = sender.text else { return }
     viewModel.query = text
     viewModel.requestFavoriteMovie()
   }
 
   @objc func onPullToRefresh(_ sender: Any) {
     viewModel.requestFavoriteMovie()
-  }
-}
-
-extension FavoriteViewController: UITextFieldDelegate {
-  func textFieldDidBeginEditing(_ textField: UITextField) {
-//    lblSearched.isHidden = false
-//    lblDescSearch.isHidden = false
   }
 }
 
