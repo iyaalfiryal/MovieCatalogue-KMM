@@ -1,11 +1,14 @@
 package com.uwaisalqadri.moviecatalogue.android.ui.favorite
 
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import com.uwaisalqadri.moviecatalogue.android.R
 import com.uwaisalqadri.moviecatalogue.android.databinding.FavoriteListItemBinding
 import com.uwaisalqadri.moviecatalogue.android.utils.loadImage
 import com.uwaisalqadri.moviecatalogue.domain.model.Movie
 import com.uwaisalqadri.moviecatalogue.utils.Constants
+import com.uwaisalqadri.moviecatalogue.utils.formatDate
 import com.xwray.groupie.viewbinding.BindableItem
 
 /**
@@ -17,11 +20,12 @@ class FavoriteItem(
 	private val onClick: (Movie) -> Unit
 ): BindableItem<FavoriteListItemBinding>() {
 
+	@RequiresApi(Build.VERSION_CODES.O)
 	override fun bind(viewBinding: FavoriteListItemBinding, position: Int) {
 		viewBinding.apply {
 			favMovieImg.loadImage(Constants.urlImage + movie.backdropPath)
 			favMovieGenres.text = movie.genreNames
-			favMovieReleased.text = movie.releaseDate
+			favMovieReleased.text = formatDate(movie.releaseDate ?: "", "yyyy")
 			favMovieTitle.text = movie.title
 			btnFavorite.setOnClickListener { onRemove(movie) }
 

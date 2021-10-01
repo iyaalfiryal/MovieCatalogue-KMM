@@ -64,7 +64,7 @@ class FavoriteCell: UITableViewCell, Reusable {
   private func configureViews() {
 
     imgFavorite.sd_setImage(with: URL(string: Constants().urlImage + (movie?.backdropPath ?? "")))
-    lblYear.text = movie?.releaseDate
+    lblYear.text = DateFormatterKt.formatDate(dateString: movie?.releaseDate ?? "", format: "yyyy")
     lblTitle.text = movie?.title
     lblGenre.text = movie?.genreNames
 

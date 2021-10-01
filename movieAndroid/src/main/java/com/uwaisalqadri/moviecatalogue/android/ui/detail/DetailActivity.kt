@@ -1,7 +1,9 @@
 package com.uwaisalqadri.moviecatalogue.android.ui.detail
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -9,9 +11,9 @@ import com.uwaisalqadri.moviecatalogue.android.R
 import com.uwaisalqadri.moviecatalogue.android.databinding.ActivityDetailBinding
 import com.uwaisalqadri.moviecatalogue.android.ui.favorite.FavoriteViewModel
 import com.uwaisalqadri.moviecatalogue.android.utils.*
-import com.uwaisalqadri.moviecatalogue.data.source.remote.response.CastItem
 import com.uwaisalqadri.moviecatalogue.domain.model.Movie
 import com.uwaisalqadri.moviecatalogue.utils.Constants
+import com.uwaisalqadri.moviecatalogue.utils.formatDate
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -32,6 +34,7 @@ class DetailActivity : AppCompatActivity() {
 		const val EXTRA_MOVIE = "movieId"
 	}
 
+	@RequiresApi(Build.VERSION_CODES.O)
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_detail)
@@ -52,9 +55,12 @@ class DetailActivity : AppCompatActivity() {
 					titleDetailMovie.text = movieData.title
 					descriptionDetailMovie.text = movieData.overview
 					movieData.posterPath?.let { imgDetailMovie.loadImage(Constants.urlImage + it) }
-					playtimeDetailMovie.text = movieData.releaseDate
+					playtimeDetailMovie.text = movieData.releaseDate?.let { formatDate(it, Constants.dateFormat) }
 					movieData.genres.forEach { it.name?.let { name -> genreNames.add(name) } }
 					genresDetailMovie.text = genreNames.joinToString(", ")
+
+//					Log.d("DATE", Date(movieData.releaseDate ?: "").asString())
+//					Log.d("DATE", movieData.releaseDate ?: "")
 
 					binding.btnAddFavorite.setOnClickListener {
 						if (isFavorite == true) favoriteViewModel.deleteFavoriteMovie(movieData.id ?: 0)

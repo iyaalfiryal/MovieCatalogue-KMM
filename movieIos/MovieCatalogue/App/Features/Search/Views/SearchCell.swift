@@ -63,7 +63,7 @@ class SearchCell: UICollectionViewCell, Reusable {
 
     lblTitle.text = movie?.title
     lblDesc.text = movie?.overview
-    lblGenre.text = movie?.releaseDate
+    lblGenre.text = DateFormatterKt.formatDate(dateString: movie?.releaseDate ?? "", format: Constants().dateFormat)
 
     subviews {
       imgPoster

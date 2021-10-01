@@ -10,6 +10,8 @@ object Constants {
 
 	const val urlImage = "https://image.tmdb.org/t/p/original"
 	const val youtubeUrl = "https://www.youtube.com/watch?v="
+	const val dateFormat = "dd MMM, yyyy"
+	const val formatFromApi = "yyyy-MM-dd"
 
 	enum class SortBy(val sort: String) {
 		Popularity("popularity.desc"),

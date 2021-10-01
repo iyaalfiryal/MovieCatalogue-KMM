@@ -111,7 +111,7 @@ class DetailViewController: UIViewController {
     imgPoster.sd_imageIndicator = SDWebImageActivityIndicator.medium
     imgPoster.sd_setImage(with: URL(string: Constants().urlImage + (movie?.posterPath ?? "")))
     lblTitle.text = movie?.title
-    lblDate.text = movie?.releaseDate
+    lblDate.text = DateFormatterKt.formatDate(dateString: movie?.releaseDate ?? "", format: Constants().dateFormat)
     lblOverview.text = movie?.overview
     movie?.genres.forEach { genre in genreNames.append(genre.name ?? "") }
     lblGenre.text = genreNames.joined(separator: ", ")

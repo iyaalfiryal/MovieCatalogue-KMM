@@ -18,4 +18,8 @@ object Extensions {
 
 		return genreNames.joinToString(", ")
 	}
+
+//	fun formatDate(dateString: String) {
+//		Date()
+//	}
 }
