@@ -41,8 +41,8 @@ VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);
 selectByQuery:
 SELECT *
 FROM MovieEntity
-WHERE title LIKE ('% ' || :query)
-OR title LIKE (:query || ' %')
+WHERE title LIKE ('%' || :query || '%')
+OR overview LIKE ('%' || :query || '%')
 ORDER BY id;
 
 selectById:
