@@ -1,8 +1,6 @@
 package com.uwaisalqadri.moviecatalogue.android.ui.favorite
 
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import com.uwaisalqadri.moviecatalogue.android.R
 import com.uwaisalqadri.moviecatalogue.android.databinding.FavoriteListItemBinding
 import com.uwaisalqadri.moviecatalogue.android.utils.loadImage
@@ -20,7 +18,6 @@ class FavoriteItem(
 	private val onClick: (Movie) -> Unit
 ): BindableItem<FavoriteListItemBinding>() {
 
-	@RequiresApi(Build.VERSION_CODES.O)
 	override fun bind(viewBinding: FavoriteListItemBinding, position: Int) {
 		viewBinding.apply {
 			favMovieImg.loadImage(Constants.urlImage + movie.backdropPath)

@@ -34,7 +34,6 @@ class DetailActivity : AppCompatActivity() {
 		const val EXTRA_MOVIE = "movieId"
 	}
 
-	@RequiresApi(Build.VERSION_CODES.O)
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 		setContentView(R.layout.activity_detail)
@@ -58,9 +57,6 @@ class DetailActivity : AppCompatActivity() {
 					playtimeDetailMovie.text = movieData.releaseDate?.let { formatDate(it, Constants.dateFormat) }
 					movieData.genres.forEach { it.name?.let { name -> genreNames.add(name) } }
 					genresDetailMovie.text = genreNames.joinToString(", ")
-
-//					Log.d("DATE", Date(movieData.releaseDate ?: "").asString())
-//					Log.d("DATE", movieData.releaseDate ?: "")
 
 					binding.btnAddFavorite.setOnClickListener {
 						if (isFavorite == true) favoriteViewModel.deleteFavoriteMovie(movieData.id ?: 0)

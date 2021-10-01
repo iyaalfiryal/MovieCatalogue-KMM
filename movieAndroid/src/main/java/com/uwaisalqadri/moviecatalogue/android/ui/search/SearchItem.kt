@@ -1,13 +1,9 @@
 package com.uwaisalqadri.moviecatalogue.android.ui.search
 
-import android.os.Build
 import android.view.View
-import androidx.annotation.RequiresApi
 import com.uwaisalqadri.moviecatalogue.android.R
 import com.uwaisalqadri.moviecatalogue.android.databinding.SearchListItemBinding
 import com.uwaisalqadri.moviecatalogue.android.utils.loadImage
-import com.uwaisalqadri.moviecatalogue.domain.model.Cast
-import com.uwaisalqadri.moviecatalogue.domain.model.Genre
 import com.uwaisalqadri.moviecatalogue.domain.model.Movie
 import com.uwaisalqadri.moviecatalogue.utils.Constants
 import com.uwaisalqadri.moviecatalogue.utils.formatDate
@@ -21,7 +17,6 @@ class SearchItem(
 	private val onClick: (Movie) -> Unit
 ) : BindableItem<SearchListItemBinding>() {
 
-	@RequiresApi(Build.VERSION_CODES.O)
 	override fun bind(viewBinding: SearchListItemBinding, position: Int) {
 
 		viewBinding.apply {

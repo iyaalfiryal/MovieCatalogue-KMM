@@ -7,17 +7,23 @@ import kotlinx.datetime.toLocalDate
 import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-import java.util.Date
+import java.util.*
 
 /**
  * Created by Uwais Alqadri on October 01, 2021
  */
 
-@RequiresApi(Build.VERSION_CODES.O)
+@SuppressLint("SimpleDateFormat")
 actual fun formatDate(dateString: String, format: String): String {
-	@SuppressLint("SimpleDateFormat")
-	val dateFormat = DateTimeFormatter.ofPattern(Constants.formatFromApi)
 
-	val currentDate = LocalDate.parse(dateString, dateFormat)
-	return currentDate.format(DateTimeFormatter.ofPattern(format))
+	return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+		val dateFormat = DateTimeFormatter.ofPattern(Constants.formatFromApi)
+		val currentDate = LocalDate.parse(dateString, dateFormat)
+		currentDate.format(DateTimeFormatter.ofPattern(format))
+	} else {
+		val date = SimpleDateFormat(Constants.formatFromApi).parse(dateString)
+		val dateFormatter = SimpleDateFormat(format, Locale.getDefault())
+		dateFormatter.format(date ?: Date())
+	}
+
 }
